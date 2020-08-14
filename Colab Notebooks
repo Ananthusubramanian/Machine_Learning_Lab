@@ -1,0 +1,204 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Lab0.ipynb",
+      "provenance": [],
+      "collapsed_sections": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Ananthusubramanian/Machine_Learning_Lab/blob/master/Colab%20Notebooks\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "FAg5tu2JTetp",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 67
+        },
+        "outputId": "57e89ba8-2dba-43d2-d1da-c1751e9bf132"
+      },
+      "source": [
+        "import numpy\n",
+        "\n",
+        "import pandas\n",
+        "\n",
+        "myarray = numpy.array([[1,2,3],[4,5,6]])\n",
+        "\n",
+        "rownames = ['a','b']\n",
+        "\n",
+        "colnames=['f1','f2','f3']\n",
+        "\n",
+        "mydataframe = pandas.DataFrame(myarray, index = rownames, columns=colnames)\n",
+        "\n",
+        "print(mydataframe)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "   f1  f2  f3\n",
+            "a   1   2   3\n",
+            "b   4   5   6\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "0J9xRKAVVjz2",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 67
+        },
+        "outputId": "fd85187f-16d8-4588-b94b-f4f909087c14"
+      },
+      "source": [
+        "import numpy\n",
+        "\n",
+        "import pandas\n",
+        "\n",
+        "myarray = numpy.array([['a','sandhya',9.6],[4,'shreya',6.5]])\n",
+        "\n",
+        "rownames = ['r1','r2']\n",
+        "\n",
+        "colnames=['f1','f2','f3']\n",
+        "\n",
+        "mydataframe = pandas.DataFrame(myarray, index = rownames, columns=colnames)\n",
+        "\n",
+        "print(mydataframe)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "   f1       f2   f3\n",
+            "r1  a  sandhya  9.6\n",
+            "r2  4   shreya  6.5\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "kBEdiAAiV54f",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 437
+        },
+        "outputId": "c5ceaf22-2fd8-425e-8b63-73c2d03bdd62"
+      },
+      "source": [
+        "from pandas import read_csv\n",
+        "\n",
+        "path='diabetes.csv'\n",
+        "\n",
+        "data=read_csv(path)\n",
+        "\n",
+        "print (data.shape)\n",
+        "\n",
+        "colnames=['Pregnancies','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age','Outcome']\n",
+        "\n",
+        "print (data.shape)\n",
+        "\n",
+        "description = data.describe()\n",
+        "\n",
+        "print(description)\n",
+        "\n",
+        "print(data.shape)\n",
+        "\n",
+        "print(data.head(4))\n",
+        "\n",
+        "print(data.groupby(['Outcome']).size())"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "(768, 9)\n",
+            "(768, 9)\n",
+            "       Pregnancies     Glucose  ...         Age     Outcome\n",
+            "count   768.000000  768.000000  ...  768.000000  768.000000\n",
+            "mean      3.845052  120.894531  ...   33.240885    0.348958\n",
+            "std       3.369578   31.972618  ...   11.760232    0.476951\n",
+            "min       0.000000    0.000000  ...   21.000000    0.000000\n",
+            "25%       1.000000   99.000000  ...   24.000000    0.000000\n",
+            "50%       3.000000  117.000000  ...   29.000000    0.000000\n",
+            "75%       6.000000  140.250000  ...   41.000000    1.000000\n",
+            "max      17.000000  199.000000  ...   81.000000    1.000000\n",
+            "\n",
+            "[8 rows x 9 columns]\n",
+            "(768, 9)\n",
+            "   Pregnancies  Glucose  BloodPressure  ...  DiabetesPedigreeFunction  Age  Outcome\n",
+            "0            6      148             72  ...                     0.627   50        1\n",
+            "1            1       85             66  ...                     0.351   31        0\n",
+            "2            8      183             64  ...                     0.672   32        1\n",
+            "3            1       89             66  ...                     0.167   21        0\n",
+            "\n",
+            "[4 rows x 9 columns]\n",
+            "Outcome\n",
+            "0    500\n",
+            "1    268\n",
+            "dtype: int64\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "EItVFy6ZfOxV",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 162
+        },
+        "outputId": "47d0670a-753d-4e76-a479-3462d64a6013"
+      },
+      "source": [
+        "files.download('example.txt')"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "NameError",
+          "evalue": "ignored",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m<ipython-input-24-ae4deba85a8b>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mfiles\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdownload\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'example.txt'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;31mNameError\u001b[0m: name 'files' is not defined"
+          ]
+        }
+      ]
+    }
+  ]
+}
